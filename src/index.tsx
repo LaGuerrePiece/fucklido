@@ -44,7 +44,7 @@ root.render(
     <ChakraProvider>
       <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider coolMode chains={chains} theme={midnightTheme({
-          accentColor: '#623485',  //color of wallet  try #703844
+          accentColor: "blue",  //color of wallet  try #703844
           accentColorForeground: 'white', //color of text
           borderRadius: 'large', //rounded edges
           fontStack: 'system',  
