@@ -1,12 +1,11 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+// import {EthereumIframeJsonRpcManager, EthereumProvider} from './ethereum-iframe-json-prc-manager';
+
+import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useContract, useDisconnect } from 'wagmi';
+import { Helmet } from "react-helmet";
 
-
-
-const Home: NextPage = () => {
+const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
   const { data } = useBalance({
     addressOrName: address,
@@ -24,14 +23,14 @@ const Home: NextPage = () => {
  
   return (
     <div className={styles.container}>
-      <Head>
+      <Helmet>
         <title>Dump stETH</title>
         <meta
           name="Dump stETH now for rETH !"
           content="Help decentralize the network"
         />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Helmet>
 
       <main className={styles.main}>
         <ConnectButton />
@@ -43,11 +42,10 @@ const Home: NextPage = () => {
         <p className={styles.description}>
         You have: {data?.formatted} {data?.symbol}
         </p>
-        <div className="Uniswap">
+          {/* <SwapWidget /> */}
+          <iframe className="w-1/2 h-72" src="https://app.1inch.io/#/1/embedded-swap/STETH/RPL?theme=dark">
 
-        </div>
-
-        
+          </iframe>
       </main>
 
       <footer className={styles.footer}>
@@ -59,4 +57,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default App;
