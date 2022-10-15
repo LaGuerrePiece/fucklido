@@ -69,7 +69,7 @@ const App = () => {
         You can help making Ethereum more decentralized by switching from Lido's centralized stETH to Rocket Pool's rETH. 
         </p>
         <p className={styles.text}>
-        What are you waiting for ? <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket</a>
+        What are you waiting for ? 
         </p>
         <p className={styles.text}>
         <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket</a>
