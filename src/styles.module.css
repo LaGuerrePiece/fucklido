@@ -19,6 +19,8 @@ a {
 
 .container {
     padding: 0 2rem;
+    color: white;
+    background-color: #1A1B1F;
   }
   
   .main {
