@@ -53,18 +53,19 @@ const App = () => {
 
       <main className={styles.main}>
         <ConnectButton />
-
         <h1 className={styles.title}>
-          Let's make <a href="#">Ethereum</a> more <a href="#">decentralized</a> !
+          Go <a href="#">Rocket</a> Today !
         </h1>
+        <h3 className={styles.title}>
+          Let's make <a href="#">Ethereum</a> more <a href="#">decentralized</a> 
+        </h3>
 
         <p className={styles.description}>
         You have: {stEthBalance?.formatted} {stEthBalance?.symbol}
         </p>
-          {/* <iframe className="w-1/2 h-72" src="https://app.1inch.io/#/1/embedded-swap/STETH/RPL?theme=dark">
-
-          </iframe> */}
-          {/* <iframe src="https://brucecrypto.vercel.app/widget" width="340" height="470"></iframe> */}
+        <p className={styles.description}>
+        You can help making Ethereum more decentralized
+        </p>
 
             <div className="Uniswap">
             <SwapWidget theme={uDarkTheme}
