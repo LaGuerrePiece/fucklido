@@ -45,7 +45,7 @@ const App = () => {
   return (
     <div className={styles.container}>
       <Helmet>
-        <title>Go Rocket 🚀</title>
+      I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80        <title>Go Rocket 🚀</title>
         <meta
           name="Dump stETH now for rETH !"
           content="Help decentralize the network"
