@@ -1,6 +1,6 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
 // import { setup1inchWidget } from '@1inch/embedded-widget';
-import { SwapWidget } from '@uniswap/widgets'
+import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
 import styles from './styles.module.css';
@@ -65,7 +65,9 @@ const App = () => {
 
           </iframe> */}
             <div className="Uniswap">
-              <SwapWidget />
+            <div className="Uniswap">
+            <SwapWidget theme={uDarkTheme} />
+  </div>
             </div>
       </main>
 
