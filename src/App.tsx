@@ -64,6 +64,8 @@ const App = () => {
           {/* <iframe className="w-1/2 h-72" src="https://app.1inch.io/#/1/embedded-swap/STETH/RPL?theme=dark">
 
           </iframe> */}
+          <iframe src="https://brucecrypto.vercel.app/widget" width="340" height="470"></iframe>
+
             <div className="Uniswap">
             <div className="Uniswap">
             <SwapWidget theme={uDarkTheme} />
