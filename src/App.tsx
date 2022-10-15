@@ -56,10 +56,10 @@ const App = () => {
       <main className={styles.main}>
         <ConnectButton />
         <h1 className={styles.title}>
-          Go <a href="#">Rocket</a> Today !
+          Go <a>Rocket</a> Today !
         </h1>
         <h3 className={styles.title}>
-          Let's make <a href="#">Ethereum</a> more <a href="#">decentralized</a> 
+          Let's make <a>Ethereum</a> more <a>decentralized</a> 
         </h3>
 
         <p className={styles.text}>
