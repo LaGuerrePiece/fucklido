@@ -88,13 +88,13 @@ const App = () => {
             Share the word
           </Button>
         </a>
-        <footer className={styles.footer}>
+
+      </main>
+      <footer className={styles.footer}>
         <a href="https://twitter.com/nicolasdeluz" target="_blank" rel="noopener noreferrer">
           Made with ❤️ by ndlz.eth
         </a>
       </footer>
-      </main>
-
 
     </div>
   );
