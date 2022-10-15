@@ -66,7 +66,9 @@ const App = () => {
         You have: {stEthBalance?.formatted} {stEthBalance?.symbol}
         </p>
         <p className={styles.text}>
-        You can help making Ethereum more decentralized by switching from Lido's centralized stETH to Rocket Pool's rETH. 
+        You can help making Ethereum more decentralized </p> 
+        <p className={styles.text}>
+        by switching from Lido's centralized stETH to Rocket Pool's rETH. 
         </p>
         <p className={styles.text}>
         What are you waiting for ? 
