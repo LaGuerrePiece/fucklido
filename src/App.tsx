@@ -62,11 +62,17 @@ const App = () => {
           Let's make <a href="#">Ethereum</a> more <a href="#">decentralized</a> 
         </h3>
 
-        <p className={styles.description}>
+        <p className={styles.text}>
         You have: {stEthBalance?.formatted} {stEthBalance?.symbol}
         </p>
-        <p className={styles.description}>
-        You can help making Ethereum more decentralized
+        <p className={styles.text}>
+        You can help making Ethereum more decentralized by switching from Lido's centralized stETH to Rocket Pool's rETH. 
+        </p>
+        <p className={styles.text}>
+        What are you waiting for ? <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket</a>
+        </p>
+        <p className={styles.text}>
+        <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket</a>
         </p>
 
         <div className="Uniswap pb-4">
@@ -77,19 +83,19 @@ const App = () => {
               defaultOutputTokenAddress={rETH}
             />
         </div>
-        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20RPL%20on%20%3A&url=gorocket.today/">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket">
           <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
             Share the word
           </Button>
         </a>
-
-      </main>
-
-      <footer className={styles.footer}>
+        <footer className={styles.footer}>
         <a href="https://twitter.com/nicolasdeluz" target="_blank" rel="noopener noreferrer">
           Made with ❤️ by ndlz.eth
         </a>
       </footer>
+      </main>
+
+
     </div>
   );
 };
