@@ -2,6 +2,9 @@ import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
 // import { setup1inchWidget } from '@1inch/embedded-widget';
 import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
+import { Button } from '@chakra-ui/react'
+import { FaTwitter } from 'react-icons/fa';
+
 
 import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useContract, useDisconnect } from 'wagmi';
@@ -38,7 +41,6 @@ const App = () => {
 
     // WBTC as the default output token
     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
-
   
   return (
     <div className={styles.container}>
@@ -67,13 +69,20 @@ const App = () => {
         You can help making Ethereum more decentralized
         </p>
 
-            <div className="Uniswap">
-            <SwapWidget theme={uDarkTheme}
-                  tokenList={MY_TOKEN_LIST}
-                  defaultInputTokenAddress={stETH} 
-                  defaultInputAmount={stEthBalance?.formatted}
-                  defaultOutputTokenAddress={rETH}/>
-            </div>
+        <div className="Uniswap pb-4">
+          <SwapWidget theme={uDarkTheme}
+              tokenList={MY_TOKEN_LIST}
+              defaultInputTokenAddress={stETH} 
+              defaultInputAmount={stEthBalance?.formatted}
+              defaultOutputTokenAddress={rETH}
+            />
+        </div>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20RPL%20on%20%3A&url=gorocket.today/">
+          <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
+            Share the word
+          </Button>
+        </a>
+
       </main>
 
       <footer className={styles.footer}>

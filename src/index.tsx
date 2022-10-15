@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { ChakraProvider } from '@chakra-ui/react'
 
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets, RainbowKitProvider, midnightTheme } from '@rainbow-me/rainbowkit';
@@ -40,15 +41,17 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <WagmiConfig client={wagmiClient}>
-    <RainbowKitProvider coolMode chains={chains} theme={midnightTheme({
-        accentColor: '#623485',  //color of wallet  try #703844
-        accentColorForeground: 'white', //color of text
-        borderRadius: 'large', //rounded edges
-        fontStack: 'system',  
-      })}>
-        <App />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ChakraProvider>
+      <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider coolMode chains={chains} theme={midnightTheme({
+          accentColor: '#623485',  //color of wallet  try #703844
+          accentColorForeground: 'white', //color of text
+          borderRadius: 'large', //rounded edges
+          fontStack: 'system',  
+        })}>
+          <App />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ChakraProvider>
   </React.StrictMode>
 );
