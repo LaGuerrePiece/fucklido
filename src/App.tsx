@@ -1,5 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-// import {EthereumIframeJsonRpcManager, EthereumProvider} from './ethereum-iframe-json-prc-manager';
+// import { setup1inchWidget } from '@1inch/embedded-widget';
+import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useContract, useDisconnect } from 'wagmi';
@@ -20,7 +22,22 @@ const App = () => {
 
     // WBTC as the default output token
     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
- 
+
+    const host = document.getElementById("host")
+    // const iframeJsonRpcManager = setup1inchWidget({
+    //   chainId: 137,
+    //   sourceTokenSymbol: '1INCH',
+    //   destinationTokenSymbol: 'DAI',
+    //   hostElement: host!,
+    //   provider: (window as any).ethereum,
+    //   theme: 'light',
+    //   sourceTokenAmount: '15'
+    // });
+    
+    // iframeJsonRpcManager.onIframeLoad(() => { // Will call a callback when 1inch swap widget is fully loaded
+    //     console.log('1inch swap widget is loaded')
+    // })
+  
   return (
     <div className={styles.container}>
       <Helmet>
@@ -42,10 +59,14 @@ const App = () => {
         <p className={styles.description}>
         You have: {data?.formatted} {data?.symbol}
         </p>
-          {/* <SwapWidget /> */}
-          <iframe className="w-1/2 h-72" src="https://app.1inch.io/#/1/embedded-swap/STETH/RPL?theme=dark">
+          <div id="host">
+          </div>
+          {/* <iframe className="w-1/2 h-72" src="https://app.1inch.io/#/1/embedded-swap/STETH/RPL?theme=dark">
 
-          </iframe>
+          </iframe> */}
+            <div className="Uniswap">
+              <SwapWidget />
+            </div>
       </main>
 
       <footer className={styles.footer}>
