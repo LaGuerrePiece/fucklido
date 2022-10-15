@@ -9,34 +9,36 @@ import { Helmet } from "react-helmet";
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
-  const { data } = useBalance({
+  const { data : stEthBalance } = useBalance({
     addressOrName: address,
     token: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84',
   })
   const { data: signer, isError: signerError, isLoading: signerLoading } = useSigner()
     // Default token list from Uniswap
-    const UNISWAP_TOKEN_LIST = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org'
-
+    const MY_TOKEN_LIST = [
+      {
+      "name": "Rocket Pool's decentralized staked ETH",
+      "address": "0xae78736cd615f374d3085123a210448e74fc6393",
+      "symbol": "rETH",
+      "decimals": 18,
+      "chainId": 1,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/15060.png"
+    },
+      {
+      "name": "Lido's centralized stETH",
+      "address": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "symbol": "stETH",
+      "decimals": 18,
+      "chainId": 1,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/8085.png"
+    },
+  ]
     // Use the native token of the connected chain as the default input token
     const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' // Special address for native token
 
     // WBTC as the default output token
     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
 
-    const host = document.getElementById("host")
-    // const iframeJsonRpcManager = setup1inchWidget({
-    //   chainId: 137,
-    //   sourceTokenSymbol: '1INCH',
-    //   destinationTokenSymbol: 'DAI',
-    //   hostElement: host!,
-    //   provider: (window as any).ethereum,
-    //   theme: 'light',
-    //   sourceTokenAmount: '15'
-    // });
-    
-    // iframeJsonRpcManager.onIframeLoad(() => { // Will call a callback when 1inch swap widget is fully loaded
-    //     console.log('1inch swap widget is loaded')
-    // })
   
   return (
     <div className={styles.container}>
@@ -57,19 +59,19 @@ const App = () => {
         </h1>
 
         <p className={styles.description}>
-        You have: {data?.formatted} {data?.symbol}
+        You have: {stEthBalance?.formatted} {stEthBalance?.symbol}
         </p>
-          <div id="host">
-          </div>
           {/* <iframe className="w-1/2 h-72" src="https://app.1inch.io/#/1/embedded-swap/STETH/RPL?theme=dark">
 
           </iframe> */}
-          <iframe src="https://brucecrypto.vercel.app/widget" width="340" height="470"></iframe>
+          {/* <iframe src="https://brucecrypto.vercel.app/widget" width="340" height="470"></iframe> */}
 
             <div className="Uniswap">
-            <div className="Uniswap">
-            <SwapWidget theme={uDarkTheme} />
-  </div>
+            <SwapWidget theme={uDarkTheme}
+                  tokenList={MY_TOKEN_LIST}
+                  defaultInputTokenAddress={stETH} 
+                  defaultInputAmount={stEthBalance?.formatted}
+                  defaultOutputTokenAddress={rETH}/>
             </div>
       </main>
 
