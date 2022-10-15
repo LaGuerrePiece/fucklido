@@ -45,7 +45,7 @@ const App = () => {
   return (
     <div className={styles.container}>
       <Helmet>
-        <title>Dump stETH</title>
+        <title>Go Rocket 🚀</title>
         <meta
           name="Dump stETH now for rETH !"
           content="Help decentralize the network"
@@ -56,7 +56,7 @@ const App = () => {
       <main className={styles.main}>
         <ConnectButton />
         <h1 className={styles.title}>
-          Go <a>Rocket</a> Today !
+          Go <a>Rocket</a> Today 🚀 
         </h1>
         <h3 className={styles.title}>
           Let's make <a>Ethereum</a> more <a>decentralized</a> 
@@ -74,7 +74,7 @@ const App = () => {
         What are you waiting for ? 
         </p>
         <p className={styles.text}>
-        <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket</a>
+        <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket 🚀</a>
         </p>
 
         <div className="Uniswap pb-4">
@@ -85,7 +85,7 @@ const App = () => {
               defaultOutputTokenAddress={rETH}
             />
         </div>
-        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
           <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
             Share the word
           </Button>
