@@ -2,6 +2,9 @@ import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
 // import { setup1inchWidget } from '@1inch/embedded-widget';
 import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
+import { useProvider } from 'wagmi'
+import type { Web3Provider } from '@ethersproject/providers'
+
 
 import { Button } from '@chakra-ui/react'
 import { FaTwitter } from 'react-icons/fa';
@@ -12,9 +15,6 @@ import { Helmet } from "react-helmet";
 // import { constructSimpleSDK, SwapSide } from '@paraswap/sdk';
 // import axios from 'axios';
 // import {useEffect} from 'react';
-
-
-// const paraSwapMin = constructSimpleSDK({chainId: 1, axios});
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
@@ -46,28 +46,9 @@ const App = () => {
   ]
     const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' 
     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
+    const JSON_RPC_URL = 'https://cloudflare-eth.com'
+
     const params = {amountToSell:stEthBalance?.value, userAddr: address}
-    // useEffect(() => {
-    //   // declare the data fetching function
-    //   const fetchPrice = async () => {
-    //     const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' 
-    //     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
-    //     const priceRoute = await paraSwapMin.swap.getRate({
-    //       srcToken: stETH,
-    //       destToken: rETH,
-    //       amount: stEthBalance?.value.toString()!,
-    //       userAddress: address,
-    //       side: SwapSide.SELL,
-    //     });
-    //     console.log("!!!!!!!!!!!!!!!!!!!", priceRoute)
-    //     return priceRoute;
-    // }
-    // const price = fetchPrice()
-    // // make sure to catch any error
-    // .catch(console.error);
-    // // console.log("asdasd", price)
-    // }, [])
-  
 
   return (
     <div className={styles.container}>
@@ -105,13 +86,14 @@ const App = () => {
         </p>
 
         <div className="Uniswap pb-4">
-          <SwapWidget theme={uDarkTheme}
-              provider={(window as any).ethereum}
+          <SwapWidget
+              theme={uDarkTheme}
+              jsonRpcEndpoint={JSON_RPC_URL}
               tokenList={MY_TOKEN_LIST}
               defaultInputTokenAddress={stETH} 
               defaultInputAmount={stEthBalance?.formatted}
               defaultOutputTokenAddress={rETH}
-              hideConnectionUI={true}
+              // hideConnectionUI={true}
               convenienceFee={10}
               convenienceFeeRecipient={"0x0a7792C2fD7bF4bC25f4d3735E8aD9f59570aCBe"}
             />

@@ -43,12 +43,12 @@ root.render(
   <React.StrictMode>
     <ChakraProvider>
       <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider coolMode chains={chains} theme={midnightTheme({
-          accentColor: '#0d76fc',  //color of wallet  try #703844
-          accentColorForeground: 'white', //color of text
-          borderRadius: 'large', //rounded edges
-          fontStack: 'system',  
-        })}>
+        <RainbowKitProvider coolMode chains={chains} theme={midnightTheme({
+            accentColor: '#0d76fc',  //color of wallet  try #703844
+            accentColorForeground: 'white', //color of text
+            borderRadius: 'large', //rounded edges
+            fontStack: 'system',  
+          })}>
           <App />
         </RainbowKitProvider>
       </WagmiConfig>
