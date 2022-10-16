@@ -5,10 +5,15 @@ import '@uniswap/widgets/fonts.css'
 import { Button } from '@chakra-ui/react'
 import { FaTwitter } from 'react-icons/fa';
 
-
 import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useContract, useDisconnect } from 'wagmi';
 import { Helmet } from "react-helmet";
+import { constructSimpleSDK, SwapSide } from '@paraswap/sdk';
+import axios from 'axios';
+import {useEffect} from 'react';
+
+
+const paraSwapMin = constructSimpleSDK({chainId: 1, axios});
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
@@ -36,12 +41,31 @@ const App = () => {
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/8085.png"
     },
   ]
-    // Use the native token of the connected chain as the default input token
-    const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' // Special address for native token
-
-    // WBTC as the default output token
+    const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' 
     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
+    const params = {amountToSell:stEthBalance?.value, userAddr: address}
+    useEffect(() => {
+      // declare the data fetching function
+      const fetchPrice = async () => {
+        const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' 
+        const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
+        const priceRoute = await paraSwapMin.swap.getRate({
+          srcToken: stETH,
+          destToken: rETH,
+          amount: stEthBalance?.value.toString()!,
+          userAddress: address,
+          side: SwapSide.SELL,
+        });
+        console.log("!!!!!!!!!!!!!!!!!!!", priceRoute)
+        return priceRoute;
+    }
+    const price = fetchPrice()
+    // make sure to catch any error
+    .catch(console.error);
+    // console.log("asdasd", price)
+    }, [])
   
+
   return (
     <div className={styles.container}>
       <Helmet>
@@ -78,12 +102,12 @@ const App = () => {
         </p>
 
         <div className="Uniswap pb-4">
-          <SwapWidget theme={uDarkTheme}
+          {/* <SwapWidget theme={uDarkTheme}
               tokenList={MY_TOKEN_LIST}
               defaultInputTokenAddress={stETH} 
-              defaultInputAmount={stEthBalance?.formatted}
+              defaultInputAmount={0.1}
               defaultOutputTokenAddress={rETH}
-            />
+            /> */}
         </div>
         <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
           <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
