@@ -2,18 +2,19 @@ import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
 // import { setup1inchWidget } from '@1inch/embedded-widget';
 import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
+
 import { Button } from '@chakra-ui/react'
 import { FaTwitter } from 'react-icons/fa';
 
 import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useContract, useDisconnect } from 'wagmi';
 import { Helmet } from "react-helmet";
-import { constructSimpleSDK, SwapSide } from '@paraswap/sdk';
-import axios from 'axios';
-import {useEffect} from 'react';
+// import { constructSimpleSDK, SwapSide } from '@paraswap/sdk';
+// import axios from 'axios';
+// import {useEffect} from 'react';
 
 
-const paraSwapMin = constructSimpleSDK({chainId: 1, axios});
+// const paraSwapMin = constructSimpleSDK({chainId: 1, axios});
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
@@ -32,14 +33,6 @@ const App = () => {
       "decimals": 18,
       "chainId": 1,
       "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/15060.png"
-    },
-    {
-      "name": "Wrapped Ether",
-      "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-      "symbol": "wETH",
-      "decimals": 18,
-      "chainId": 1,
-      "logoURI": "https://etherscan.io/token/images/weth_28.png"
     },
       {
       "name": "Lido's centralized stETH",
@@ -113,10 +106,14 @@ const App = () => {
 
         <div className="Uniswap pb-4">
           <SwapWidget theme={uDarkTheme}
+              provider={(window as any).ethereum}
               tokenList={MY_TOKEN_LIST}
               defaultInputTokenAddress={stETH} 
-              defaultInputAmount={0.1}
+              defaultInputAmount={stEthBalance?.formatted}
               defaultOutputTokenAddress={rETH}
+              hideConnectionUI={true}
+              convenienceFee={10}
+              convenienceFeeRecipient={"0x0a7792C2fD7bF4bC25f4d3735E8aD9f59570aCBe"}
             />
         </div>
         <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
