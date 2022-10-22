@@ -7,18 +7,17 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets, RainbowKitProvider, midnightTheme } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 import App from './App';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.mainnet,
-    ...(process.env.REACT_APP_ENABLE_TESTNETS === 'true'
-      ? [chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
-      : []),
   ],
   [
-    alchemyProvider({ apiKey: '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC' }),
+    infuraProvider({ apiKey: 'a035e52afe954afe9c45e781080cde98' }),
+    alchemyProvider({ apiKey: 'VkrAJOLRBt1bb5p3ypYrQj84QElpex8g' }),
     publicProvider(),
   ]
 );

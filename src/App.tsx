@@ -1,29 +1,54 @@
 import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
-// import { setup1inchWidget } from '@1inch/embedded-widget';
+import { setup1inchWidget } from '@1inch/embedded-widget';
 import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
-import { useProvider } from 'wagmi'
-import type { Web3Provider } from '@ethersproject/providers'
-
 
 import { Button } from '@chakra-ui/react'
 import { FaTwitter } from 'react-icons/fa';
 
 import styles from './styles.module.css';
-import { useAccount, useBalance, useSigner, useContract, useDisconnect } from 'wagmi';
+import { useAccount, useBalance, useSigner, useProvider, useWebSocketProvider } from 'wagmi';
 import { Helmet } from "react-helmet";
-// import { constructSimpleSDK, SwapSide } from '@paraswap/sdk';
-// import axios from 'axios';
-// import {useEffect} from 'react';
+import {useRef, useEffect} from 'react';
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
+  const ref = useRef(null);
+  const provider = useProvider({
+    chainId: 1,
+  })
+  
+  useEffect(() => {
+    const el2 = ref.current;
+    
+    console.log(el2);
+
+    if (!ref.current) return
+    if (!window) return
+
+    const iframeJsonRpcManager = setup1inchWidget({
+      chainId: 1,
+      sourceTokenSymbol: '1INCH',
+      destinationTokenSymbol: 'DAI',
+      hostElement: ref.current,
+      provider: (window as any).ethereum,
+      // provider: provider,
+      theme: 'light',
+      sourceTokenAmount: '15'
+    });
+    const iframe = document.getElementById('oneInchWidgetFrame') as HTMLIFrameElement
+    // iframe.style.cssText = "width"
+    iframe.setAttribute('style', "width=500px; height=500px");
+
+
+
+  }, []);
+
   const { data : stEthBalance } = useBalance({
     addressOrName: address,
     token: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84',
   })
   const { data: signer, isError: signerError, isLoading: signerLoading } = useSigner()
-    // Default token list from Uniswap
     // const CG_TOKEN_LIST = 'https://tokens.coingecko.com/ethereum/all.json'
     const MY_TOKEN_LIST = [
       {
@@ -46,9 +71,16 @@ const App = () => {
   ]
     const stETH = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84' 
     const rETH = '0xae78736cd615f374d3085123a210448e74fc6393'
-    const JSON_RPC_URL = 'https://cloudflare-eth.com'
 
     const params = {amountToSell:stEthBalance?.value, userAddr: address}
+
+    // const host = document.createElement('div');
+    // const hostelement = document.getElementById("hostelement") as HTMLElement
+    // console.log('hostelement', hostelement)
+    
+    // document.appendChild(host)
+
+
 
   return (
     <div className={styles.container}>
@@ -62,7 +94,7 @@ const App = () => {
       </Helmet>
 
       <main className={styles.main}>
-        <ConnectButton />
+        {/* <ConnectButton /> */}
         <h1 className={styles.title}>
           Go <a>Rocket</a> Today 🚀 
         </h1>
@@ -85,18 +117,8 @@ const App = () => {
         <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket 🚀</a>
         </p>
 
-        <div className="Uniswap pb-4">
-          <SwapWidget
-              theme={uDarkTheme}
-              jsonRpcEndpoint={JSON_RPC_URL}
-              tokenList={MY_TOKEN_LIST}
-              defaultInputTokenAddress={stETH} 
-              defaultInputAmount={stEthBalance?.formatted}
-              defaultOutputTokenAddress={rETH}
-              // hideConnectionUI={true}
-              convenienceFee={10}
-              convenienceFeeRecipient={"0x0a7792C2fD7bF4bC25f4d3735E8aD9f59570aCBe"}
-            />
+        <div ref={ref} className="w-96 h-96 pb-4">
+
         </div>
         <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
           <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
