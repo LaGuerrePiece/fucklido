@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useProvider, useWebSocketProvider } from 'wagmi';
 import { Helmet } from "react-helmet";
 import {useRef, useEffect} from 'react';
-import Iframe from 'react-iframe'
+// import Iframe from 'react-iframe'
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
@@ -29,8 +29,8 @@ const App = () => {
 
     const iframeJsonRpcManager = setup1inchWidget({
       chainId: 1,
-      sourceTokenSymbol: 'STETH',
-      destinationTokenSymbol: 'DAI',
+      sourceTokenSymbol: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84',
+      destinationTokenSymbol: '0xae78736cd615f374d3085123a210448e74fc6393',
       hostElement: ref.current,
       provider: (window as any).ethereum,
       // provider: provider,
@@ -40,10 +40,9 @@ const App = () => {
 
     });
     const iframe = document.getElementById('oneInchWidgetFrame') as HTMLIFrameElement
-    iframe.style.cssText = "width"
-    // iframe.setAttribute('style', "width=500px; height=500px");
-    // console.log(iframe.src);
-
+    iframe.width = "430";
+    iframe.height = "530";
+    iframe.scrolling = 'no'
 
   }, []);
 
@@ -77,10 +76,10 @@ const App = () => {
 
     const params = {amountToSell:stEthBalance?.value, userAddr: address}
 
-    const host = document.createElement('div');
-    const hostelement = document.getElementById("hostelement") as HTMLElement
-    console.log('hostelement', hostelement)
-    document.appendChild(host)
+    // const host = document.createElement('div');
+    // const hostelement = document.getElementById("hostelement") as HTMLElement
+    // console.log('hostelement', hostelement)
+    // document.appendChild(host)
 
 
 
@@ -118,13 +117,14 @@ const App = () => {
         <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket 🚀</a>
         </p>
 
-        {/* <Iframe url="https://bafybeif2ygf6can5g343kfsey7uf6m7ea4pjnfcdomijuqsqvj5oslmwgq.ipfs.dweb.link/#/1/embedded-swap/"
+        {/* <Iframe url="https://bafybeif2ygf6can5g343kfsey7uf6m7ea4pjnfcdomijuqsqvj5oslmwgq.ipfs.dweb.link/#/1/unified/swap/0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84/0xae78736cd615f374d3085123a210448e74fc6393"
           width="400px"
-          height="650px"
+          height="520px"
           id=""
           className=""
           display="block"
           position="relative"
+          scrolling='no'
         /> */}
 
         {/* <div className="Uniswap pb-4">
@@ -140,7 +140,7 @@ const App = () => {
             />
         </div> */}
 
-        <div ref={ref} className="w-96 h-96 pb-4">
+        <div ref={ref} className="w-460 h-300 pb-4">
         </div>
 
         <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
