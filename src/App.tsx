@@ -1,6 +1,6 @@
 import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
 import { setup1inchWidget } from '@1inch/embedded-widget';
-import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
+// import { darkTheme as uDarkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
 import { Button } from '@chakra-ui/react'
@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 import { useAccount, useBalance, useSigner, useProvider, useWebSocketProvider } from 'wagmi';
 import { Helmet } from "react-helmet";
 import {useRef, useEffect} from 'react';
+import Iframe from 'react-iframe'
 
 const App = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
@@ -28,18 +29,20 @@ const App = () => {
 
     const iframeJsonRpcManager = setup1inchWidget({
       chainId: 1,
-      sourceTokenSymbol: '1INCH',
+      sourceTokenSymbol: 'STETH',
       destinationTokenSymbol: 'DAI',
       hostElement: ref.current,
       provider: (window as any).ethereum,
       // provider: provider,
-      theme: 'light',
-      sourceTokenAmount: '15'
+      theme: 'dark',
+      sourceTokenAmount: '15',
+      oneInchOrigin: "https://bafybeif2ygf6can5g343kfsey7uf6m7ea4pjnfcdomijuqsqvj5oslmwgq.ipfs.dweb.link/"
+
     });
     const iframe = document.getElementById('oneInchWidgetFrame') as HTMLIFrameElement
-    // iframe.style.cssText = "width"
-    iframe.setAttribute('style', "width=500px; height=500px");
-
+    iframe.style.cssText = "width"
+    // iframe.setAttribute('style', "width=500px; height=500px");
+    // console.log(iframe.src);
 
 
   }, []);
@@ -74,18 +77,16 @@ const App = () => {
 
     const params = {amountToSell:stEthBalance?.value, userAddr: address}
 
-    // const host = document.createElement('div');
-    // const hostelement = document.getElementById("hostelement") as HTMLElement
-    // console.log('hostelement', hostelement)
-    
-    // document.appendChild(host)
+    const host = document.createElement('div');
+    const hostelement = document.getElementById("hostelement") as HTMLElement
+    console.log('hostelement', hostelement)
+    document.appendChild(host)
 
 
 
   return (
     <div className={styles.container}>
       <Helmet>
-      I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80        <title>Go Rocket 🚀</title>
         <meta
           name="Dump stETH now for rETH !"
           content="Help decentralize the network"
@@ -94,7 +95,7 @@ const App = () => {
       </Helmet>
 
       <main className={styles.main}>
-        {/* <ConnectButton /> */}
+        <ConnectButton />
         <h1 className={styles.title}>
           Go <a>Rocket</a> Today 🚀 
         </h1>
@@ -103,7 +104,7 @@ const App = () => {
         </h3>
 
         <p className={styles.text}>
-        You have: {stEthBalance?.formatted} {stEthBalance?.symbol}
+        {/* You have: {stEthBalance?.formatted} {stEthBalance?.symbol} */}
         </p>
         <p className={styles.text}>
         You can help making Ethereum more decentralized </p> 
@@ -117,14 +118,37 @@ const App = () => {
         <a href="https://twitter.com/search?q=%23GoRocket">#GoRocket 🚀</a>
         </p>
 
-        <div ref={ref} className="w-96 h-96 pb-4">
+        {/* <Iframe url="https://bafybeif2ygf6can5g343kfsey7uf6m7ea4pjnfcdomijuqsqvj5oslmwgq.ipfs.dweb.link/#/1/embedded-swap/"
+          width="400px"
+          height="650px"
+          id=""
+          className=""
+          display="block"
+          position="relative"
+        /> */}
 
+        {/* <div className="Uniswap pb-4">
+          <SwapWidget theme={uDarkTheme}
+              provider={(window as any).ethereum}
+              tokenList={MY_TOKEN_LIST}
+              defaultInputTokenAddress={stETH} 
+              defaultInputAmount={stEthBalance?.formatted}
+              defaultOutputTokenAddress={rETH}
+              hideConnectionUI={true}
+              convenienceFee={10}
+              convenienceFeeRecipient={"0x0a7792C2fD7bF4bC25f4d3735E8aD9f59570aCBe"}
+            />
+        </div> */}
+
+        <div ref={ref} className="w-96 h-96 pb-4">
         </div>
+
         <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
           <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
-            Share the word
+            Spread the word
           </Button>
         </a>
+        
 
       </main>
       <footer className={styles.footer}>
