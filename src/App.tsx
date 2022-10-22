@@ -40,9 +40,12 @@ const App = () => {
 
     });
     const iframe = document.getElementById('oneInchWidgetFrame') as HTMLIFrameElement
+    iframe.src = `https://bafybeif2ygf6can5g343kfsey7uf6m7ea4pjnfcdomijuqsqvj5oslmwgq.ipfs.dweb.link/#/1/unified/swap/0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84/0xae78736cd615f374d3085123a210448e74fc6393`;
     iframe.width = "430";
-    iframe.height = "530";
+    iframe.height = "590";
+    iframe.frameBorder = "0"
     iframe.scrolling = 'no'
+
 
   }, []);
 
@@ -94,7 +97,7 @@ const App = () => {
       </Helmet>
 
       <main className={styles.main}>
-        <ConnectButton />
+        {/* <ConnectButton /> */}
         <h1 className={styles.title}>
           Go <a>Rocket</a> Today 🚀 
         </h1>
