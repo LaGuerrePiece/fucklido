@@ -31,7 +31,6 @@ const App = () => {
       destinationTokenSymbol: '0xae78736cd615f374d3085123a210448e74fc6393',
       hostElement: ref.current,
       provider: (window as any).ethereum,
-      // provider: provider,
       theme: 'dark',
       sourceTokenAmount: '15',
       oneInchOrigin: "https://bafybeif2ygf6can5g343kfsey7uf6m7ea4pjnfcdomijuqsqvj5oslmwgq.ipfs.dweb.link/"
@@ -46,31 +45,6 @@ const App = () => {
 
 
   }, []);
-
-  const { data : stEthBalance } = useBalance({
-    addressOrName: address,
-    token: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84',
-  })
-    // const CG_TOKEN_LIST = 'https://tokens.coingecko.com/ethereum/all.json'
-    const MY_TOKEN_LIST = [
-      {
-      "name": "Rocket Pool's decentralized staked ETH",
-      "address": "0xae78736cd615f374d3085123a210448e74fc6393",
-      "symbol": "rETH",
-      "decimals": 18,
-      "chainId": 1,
-      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/15060.png"
-    },
-      {
-      "name": "Lido's centralized stETH",
-      "address": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
-      "symbol": "stETH",
-      "decimals": 18,
-      "chainId": 1,
-      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/8085.png"
-    },
-
-  ]
 
   return (
     <div className={styles.container}>
