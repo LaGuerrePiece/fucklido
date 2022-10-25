@@ -146,8 +146,8 @@ const App = () => {
         <div ref={ref} className="w-460 h-300 pb-4">
         </div>
 
-        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocket%20%F0%9F%9A%80">
-          <Button colorScheme='twitter' leftIcon={<FaTwitter />} >
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=I%20just%20sold%20my%20stETH%20for%20rETH%20on%20%3A%20gorocket.today%20%21%0ALet%27s%20help%20%20decentralize%20Ethereum%2C%20%23GoRocketToday%20%F0%9F%9A%80">
+          <Button colorScheme='twitter' size="lg" leftIcon={<FaTwitter />} >
             Spread the word
           </Button>
         </a>
